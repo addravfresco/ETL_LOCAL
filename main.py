@@ -25,12 +25,13 @@ def ejecutar_etl():
         ruta_parquet = os.path.join(ETL_CONFIG["staging_path"], "MVCARATULAS_PROCESADO.parquet")
         df_limpio.write_parquet(ruta_parquet)
 
-        # 5. Exportar muestra de validación (CSV de 100 líneas)
-        ruta_muestra = os.path.join(ETL_CONFIG["staging_path"], "MUESTRA_100_REGISTROS.csv")
-        df_limpio.head(100).write_csv(ruta_muestra, separator=",")
-        print(f"-> Muestra para inspección visual generada en: {ruta_muestra}")
+        # 5. Exportar muestra aleatoria de validación, los 100 primeros registros al azar
+        ruta_muestra = os.path.join(ETL_CONFIG["staging_path"], "MUESTRA_ALEATORIA_100.csv")
         
-        print(f"✅ Proceso finalizado. Datos listos en: {ruta_parquet}")
+        # Usamos n=100 para una cantidad fija
+        df_limpio.sample(n=500, seed=42).write_csv(ruta_muestra, separator=",")
+        
+        print(f"-> ✅ Muestra aleatoria generada con éxito en: {ruta_muestra}")
 
     except Exception as e:
         print(f"❌ ERROR CRÍTICO EN EL PIPELINE: {e}")

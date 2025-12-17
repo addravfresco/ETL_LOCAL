@@ -32,7 +32,7 @@ def extraer_datos_limpios(config: dict):
     ruta_limpia = reconstruir_archivo_fisico(config)
     esquema = {col: pl.String for col in config["columns_ordered"]}
     
-    print("-> Cargando archivo reconstruido a DataFrame (Modo Tolerante)...")
+    print("-> Cargando archivo Dataframe")
     df = pl.read_csv(
         ruta_limpia,
         separator=config["delimiter"],
