@@ -1,3 +1,4 @@
+```
 SIGER_ETL_LOCAL/
 ├── config/
 │   └── settings.py
@@ -10,3 +11,4 @@ SIGER_ETL_LOCAL/
 │   ├── extraction.py
 │   └── transformation.py
 └── main.py
+```
