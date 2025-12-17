@@ -23,7 +23,7 @@ def transformar_mvcaratulas(df: pl.DataFrame):
         # 2. Normalización de fechas
         pl.col("FCAPERTURA").str.strptime(pl.Datetime, format="%Y-%m-%d %H:%M:%S%.f", strict=False),
 
-        # 3. Sanitización profunda del CLOB (DSOBJETO)
+        # 3. Tratamiento de DSOBJETO
         pl.col("DSOBJETO")
             .str.replace_all(r"[\r\n\t]", " ")
             .str.replace_all(r"\s+", " ")

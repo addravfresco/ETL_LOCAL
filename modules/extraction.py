@@ -15,7 +15,7 @@ def reconstruir_archivo_fisico(config: dict, pipes_esperados: int = 23):
     with open(ruta_origen, 'r', encoding='utf-8', errors='ignore') as f_in, \
          open(ruta_tmp, 'w', encoding='utf-8') as f_out:
         
-        next(f_in) # Saltar encabezado
+        next(f_in) 
         for linea in f_in:
             registro_acumulado += linea.replace('\n', ' ').replace('\r', ' ')
             if registro_acumulado.count(config["delimiter"]) >= pipes_esperados:
@@ -38,7 +38,7 @@ def extraer_datos_limpios(config: dict):
         separator=config["delimiter"],
         has_header=False,
         schema=esquema,
-        quote_char=None, # Importante para evitar errores de comillas
+        quote_char=None, 
         truncate_ragged_lines=True,
         low_memory=True
     )
